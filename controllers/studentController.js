@@ -31,14 +31,14 @@ const getAttendanceStudent = async (req, res) => {
                 populate: {
                     path: "subjectId",
                     model: Subject,
-                    select: "subjectName"
+                    select: "name"
                 }
             });
 
         const result = attendances.map(a => ({
             id: a._id.toString(),
             className: a.classId?.className ?? null,
-            subjectName: a.classId?.subjectId?.subjectName ?? null,
+            subjectName: a.classId?.subjectId?.name ?? null,
             date: a.date,
             status: a.status
         }));
